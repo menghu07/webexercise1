@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap 实例</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <script src="../js/jquery-3.2.1.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script>
+        //resolve 一个resolvable对象
+        let p1 = Promise.resolve({
+            then: function (onFulfill, onReject) {
+                onFulfill('onFulfilled!');
+            }
+        });
+        console.log('p1 instanceof Promise: ' + p1 instanceof Promise);
+        //p1.then
+        p1.then(function (v) {
+            console.log('i am a then"s 参数' + v);
+        }, function (v) {
+            console.log('reject function: ' + v);
+        });
+
+        //thenable 在回调之前抛异常
+        var thenable = {
+            then: function (onFulfill) {
+                throw new TypeError("Throwing type error");
+                onFulfill("resolving");
+            }
+        };
+        let p2 = Promise.resolve(thenable);
+        p2.then(function (v) {
+            console.log('onFulfilled value: ' + v);
+        }, function onRejected(v) {
+            console.log('onRejected value: ' + v);
+        });
+
+        // Thenable在callback之后抛出异常
+        // Promise resolves
+        var thenable = {
+            then: function (resolve) {
+                resolve("Resolving");
+                throw new TypeError("Throwing");
+            }
+        };
+
+        var p3 = Promise.resolve(thenable);
+        p3.then(function (v) {
+            setTimeout(function () {
+                console.log('在抛出异常之前执行');
+            }, 10000, 'fff');
+            console.log(v + '在抛出异常之前有setTimeout'); // 输出"Resolving"
+        }, function (e) {
+            // 不会被调用
+        });
+
+        try {
+            var mixedPromisesArray = [Promise.resolve(33), Promise.reject(4334)];
+            console.log(233);
+           
+            var p = Promise.all(mixedPromisesArray);
+            setTimeout(function () {
+                console.log(p);
+            }, 5000);
+        } catch (e) {
+            console.log(e + 'exception');
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>我的第一个 Bootstrap 页面</h1>
+        <p>重置窗口大小，查看响应式效果！</p>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>第一列</h3>
+            <p>学的不仅是技术，更是梦想！</p>
+            <p>再牛逼的梦想,也抵不住你傻逼似的坚持！</p>
+        </div>
+        <div class="col-sm-4">
+            <h3>第二列</h3>
+            <p>学的不仅是技术，更是梦想！</p>
+            <p>再牛逼的梦想,也抵不住你傻逼似的坚持！</p>
+        </div>
+        <div class="col-sm-4">
+            <h3>第三列</h3>
+            <p>学的不仅是技术，更是梦想！</p>
+            <p>再牛逼的梦想,也抵不住你傻逼似的坚持！</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

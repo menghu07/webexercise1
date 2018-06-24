@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/><!--
+    <meta name="description" content="Bootstrap Template"/>
+    <meta http-equiv="refresh" content="1000"/>
+    <meta name="author" content="ahu"/>
+    <meta name="keywords" content="bootstrap template"/>
+    <meta name="revised" content="date 2012-12-12"/>-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--meta必须放在最前面-->
+    <!--使用最最新的IE内核渲染页面-->
+    <meta http-equiv="X-UA-Compitable" content="IE=edge"/>
+
+    <title>Bootstrap Template</title>
+    <link href="../css/bootstrap.css" rel="stylesheet"/>
+    <!--html5 shim and response.js for IE8 support of html5 elements and media queries-->
+    <!--warning: response.js 如果通过file://访问页面response.js不工作-->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js" ></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        div#MyDIV
+        {
+            position:relative;
+            left: 100px;
+            top:100px;
+            background-color:yellow;
+            width:200px;
+            height:100px;
+            box-shadow:  -10px 0px 0 1px black inset;
+        }
+    </style>
+</head>
+<body>
+<!--
+classs  id,name  data-* src,for,type,href,value title,alt role,aria-*
+-->
+<h1>Bootstrap Template </h1>
+<div id="div1">click here add event<br/>
+    <p style="height:100px;">another line</p>
+    <div id="div2">sub line</div>
+</div>
+<label for="input12">input text</label><input id="input12" name="input1" type="text" disabled="fff">
+<div id="MyDIV">DIV</div>
+<script>
+    //事件第三个参数true表示在捕获阶段触发事件处理函数，默认是冒泡阶段处理事件
+    var i = 0;
+    var div1 = document.getElementById('div1');
+    div1.addEventListener('click', parent, false);
+    var div2 = document.getElementById('div2');
+    div2.addEventListener('click', sub, true);
+    function parent() {
+        console.log("parent you are write" + i++);
+    }
+
+    function sub() {
+        console.log("sub you are write");
+    }
+
+</script>
+<!--脚本的依赖顺序决定他们的代码顺序-->
+<script src="../js/jquery-3.2.1.js"> </script>
+<script src="../js/bootstrap.js"></script>
+<script src="../js/testlocal.js"></script>
+</body>
+</html>

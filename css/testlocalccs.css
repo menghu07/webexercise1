@@ -1,0 +1,11 @@
+
+#这是 注释
+div#MyDIV
+{
+    position:relative;
+    left: 100px;
+    top:100px;
+    background-color:yellow;
+    width:50px;
+    height:50px;
+}
